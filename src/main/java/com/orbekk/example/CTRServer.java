@@ -20,10 +20,21 @@ public class CTRServer {
         public void getPrediction(RpcController controller, CTR.Request request,
                                   RpcCallback<CTR.Response> done) {
 //            String fortune = fortunes[random.nextInt(fortunes.length)];
-            float pred = random.nextFloat();
-            int bannerid = request.getBannerid();
+
+            long sum = 0;
+            for (int i = 1; i < 100000; i++) {
+                for (int j = 1; j < 100000; j++) {
+                    sum = i + j;
+                }
+            }
+
+
+
+            float pred = random.nextInt(10000) / sum;
+            int bannerid = request.getBannerId();
             CTR.Response.Builder reply =
-                    CTR.Response.newBuilder().setBannerid(bannerid).setCtrPred(pred);
+                    CTR.Response.newBuilder().
+                            setBannerId(bannerid).setCtrPrediction(pred);
             done.run(reply.build());
         }
     }

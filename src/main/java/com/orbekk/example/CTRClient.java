@@ -18,7 +18,7 @@ public class CTRClient {
             channel = RpcChannel.createOrNull("localhost", port);
             CTR.CTRPredictionService service =
                     CTR.CTRPredictionService.newStub(channel);
-            printFortune(service);
+            printData(service);
         } finally {
             if (channel != null) {
                 channel.close();
@@ -27,9 +27,32 @@ public class CTRClient {
 
     }
 
-    public void printFortune(CTR.CTRPredictionService service) {
+    public void printData(CTR.CTRPredictionService service) {
         Rpc rpc = new Rpc();  // Represents a single rpc call.
-        CTR.Request request = CTR.Request.newBuilder().setBannerid(11).setGuid(123).build();
+
+        int weekday = 1;
+        int hour = 2;
+        int bannerId = 3;
+        int geographic = 4;
+        int zoneId = 5;
+        int guid = 6;
+        String domain = "xxx";
+        int osCode = 8;
+        int browserCode = 9;
+
+
+        CTR.Request request = CTR.Request.newBuilder()
+                .setWeekday(weekday)
+                .setHour(hour)
+                .setBannerId(bannerId)
+                .setGeographic(geographic)
+                .setZoneId(zoneId)
+                .setGuid(guid)
+                .setDomain(domain)
+                .setOsCode(osCode)
+                .setBrowserCode(browserCode)
+                .build();
+
 
         // An RPC call is asynchronous. A CountDownLatch is a nice way to wait
         // for the callback to finish.
@@ -37,7 +60,7 @@ public class CTRClient {
         service.getPrediction(rpc, request, new RpcCallback<CTR.Response>() {
             @Override
             public void run(CTR.Response reply) {
-                System.out.println(reply.getBannerid() + ":" + reply.getCtrPred());
+                System.out.println(reply.getBannerId() + ":" + reply.getCtrPrediction());
                 doneSignal.countDown();
             }
         });

@@ -19,14 +19,54 @@ public final class CTR {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int64 guid = 1;</code>
+     * <code>optional int32 weekday = 1;</code>
+     */
+    int getWeekday();
+
+    /**
+     * <code>optional int32 hour = 2;</code>
+     */
+    int getHour();
+
+    /**
+     * <code>optional int32 bannerId = 3;</code>
+     */
+    int getBannerId();
+
+    /**
+     * <code>optional int32 geographic = 4;</code>
+     */
+    int getGeographic();
+
+    /**
+     * <code>optional int32 zoneId = 5;</code>
+     */
+    int getZoneId();
+
+    /**
+     * <code>optional int64 guid = 6;</code>
      */
     long getGuid();
 
     /**
-     * <code>optional int32 bannerid = 2;</code>
+     * <code>optional string domain = 7;</code>
      */
-    int getBannerid();
+    java.lang.String getDomain();
+    /**
+     * <code>optional string domain = 7;</code>
+     */
+    com.google.protobuf.ByteString
+        getDomainBytes();
+
+    /**
+     * <code>optional int32 osCode = 8;</code>
+     */
+    int getOsCode();
+
+    /**
+     * <code>optional int32 browserCode = 9;</code>
+     */
+    int getBrowserCode();
   }
   /**
    * Protobuf type {@code com.orbekk.example.Request}
@@ -40,8 +80,15 @@ public final class CTR {
       super(builder);
     }
     private Request() {
+      weekday_ = 0;
+      hour_ = 0;
+      bannerId_ = 0;
+      geographic_ = 0;
+      zoneId_ = 0;
       guid_ = 0L;
-      bannerid_ = 0;
+      domain_ = "";
+      osCode_ = 0;
+      browserCode_ = 0;
     }
 
     @java.lang.Override
@@ -71,12 +118,48 @@ public final class CTR {
             }
             case 8: {
 
-              guid_ = input.readInt64();
+              weekday_ = input.readInt32();
               break;
             }
             case 16: {
 
-              bannerid_ = input.readInt32();
+              hour_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              bannerId_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              geographic_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              zoneId_ = input.readInt32();
+              break;
+            }
+            case 48: {
+
+              guid_ = input.readInt64();
+              break;
+            }
+            case 58: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              domain_ = s;
+              break;
+            }
+            case 64: {
+
+              osCode_ = input.readInt32();
+              break;
+            }
+            case 72: {
+
+              browserCode_ = input.readInt32();
               break;
             }
           }
@@ -102,22 +185,110 @@ public final class CTR {
               com.orbekk.example.CTR.Request.class, com.orbekk.example.CTR.Request.Builder.class);
     }
 
-    public static final int GUID_FIELD_NUMBER = 1;
+    public static final int WEEKDAY_FIELD_NUMBER = 1;
+    private int weekday_;
+    /**
+     * <code>optional int32 weekday = 1;</code>
+     */
+    public int getWeekday() {
+      return weekday_;
+    }
+
+    public static final int HOUR_FIELD_NUMBER = 2;
+    private int hour_;
+    /**
+     * <code>optional int32 hour = 2;</code>
+     */
+    public int getHour() {
+      return hour_;
+    }
+
+    public static final int BANNERID_FIELD_NUMBER = 3;
+    private int bannerId_;
+    /**
+     * <code>optional int32 bannerId = 3;</code>
+     */
+    public int getBannerId() {
+      return bannerId_;
+    }
+
+    public static final int GEOGRAPHIC_FIELD_NUMBER = 4;
+    private int geographic_;
+    /**
+     * <code>optional int32 geographic = 4;</code>
+     */
+    public int getGeographic() {
+      return geographic_;
+    }
+
+    public static final int ZONEID_FIELD_NUMBER = 5;
+    private int zoneId_;
+    /**
+     * <code>optional int32 zoneId = 5;</code>
+     */
+    public int getZoneId() {
+      return zoneId_;
+    }
+
+    public static final int GUID_FIELD_NUMBER = 6;
     private long guid_;
     /**
-     * <code>optional int64 guid = 1;</code>
+     * <code>optional int64 guid = 6;</code>
      */
     public long getGuid() {
       return guid_;
     }
 
-    public static final int BANNERID_FIELD_NUMBER = 2;
-    private int bannerid_;
+    public static final int DOMAIN_FIELD_NUMBER = 7;
+    private volatile java.lang.Object domain_;
     /**
-     * <code>optional int32 bannerid = 2;</code>
+     * <code>optional string domain = 7;</code>
      */
-    public int getBannerid() {
-      return bannerid_;
+    public java.lang.String getDomain() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        domain_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>optional string domain = 7;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDomainBytes() {
+      java.lang.Object ref = domain_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        domain_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int OSCODE_FIELD_NUMBER = 8;
+    private int osCode_;
+    /**
+     * <code>optional int32 osCode = 8;</code>
+     */
+    public int getOsCode() {
+      return osCode_;
+    }
+
+    public static final int BROWSERCODE_FIELD_NUMBER = 9;
+    private int browserCode_;
+    /**
+     * <code>optional int32 browserCode = 9;</code>
+     */
+    public int getBrowserCode() {
+      return browserCode_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -132,11 +303,32 @@ public final class CTR {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (guid_ != 0L) {
-        output.writeInt64(1, guid_);
+      if (weekday_ != 0) {
+        output.writeInt32(1, weekday_);
       }
-      if (bannerid_ != 0) {
-        output.writeInt32(2, bannerid_);
+      if (hour_ != 0) {
+        output.writeInt32(2, hour_);
+      }
+      if (bannerId_ != 0) {
+        output.writeInt32(3, bannerId_);
+      }
+      if (geographic_ != 0) {
+        output.writeInt32(4, geographic_);
+      }
+      if (zoneId_ != 0) {
+        output.writeInt32(5, zoneId_);
+      }
+      if (guid_ != 0L) {
+        output.writeInt64(6, guid_);
+      }
+      if (!getDomainBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, domain_);
+      }
+      if (osCode_ != 0) {
+        output.writeInt32(8, osCode_);
+      }
+      if (browserCode_ != 0) {
+        output.writeInt32(9, browserCode_);
       }
     }
 
@@ -145,13 +337,40 @@ public final class CTR {
       if (size != -1) return size;
 
       size = 0;
+      if (weekday_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, weekday_);
+      }
+      if (hour_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, hour_);
+      }
+      if (bannerId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, bannerId_);
+      }
+      if (geographic_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, geographic_);
+      }
+      if (zoneId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, zoneId_);
+      }
       if (guid_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, guid_);
+          .computeInt64Size(6, guid_);
       }
-      if (bannerid_ != 0) {
+      if (!getDomainBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, domain_);
+      }
+      if (osCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, bannerid_);
+          .computeInt32Size(8, osCode_);
+      }
+      if (browserCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, browserCode_);
       }
       memoizedSize = size;
       return size;
@@ -169,10 +388,24 @@ public final class CTR {
       com.orbekk.example.CTR.Request other = (com.orbekk.example.CTR.Request) obj;
 
       boolean result = true;
+      result = result && (getWeekday()
+          == other.getWeekday());
+      result = result && (getHour()
+          == other.getHour());
+      result = result && (getBannerId()
+          == other.getBannerId());
+      result = result && (getGeographic()
+          == other.getGeographic());
+      result = result && (getZoneId()
+          == other.getZoneId());
       result = result && (getGuid()
           == other.getGuid());
-      result = result && (getBannerid()
-          == other.getBannerid());
+      result = result && getDomain()
+          .equals(other.getDomain());
+      result = result && (getOsCode()
+          == other.getOsCode());
+      result = result && (getBrowserCode()
+          == other.getBrowserCode());
       return result;
     }
 
@@ -183,11 +416,25 @@ public final class CTR {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + WEEKDAY_FIELD_NUMBER;
+      hash = (53 * hash) + getWeekday();
+      hash = (37 * hash) + HOUR_FIELD_NUMBER;
+      hash = (53 * hash) + getHour();
+      hash = (37 * hash) + BANNERID_FIELD_NUMBER;
+      hash = (53 * hash) + getBannerId();
+      hash = (37 * hash) + GEOGRAPHIC_FIELD_NUMBER;
+      hash = (53 * hash) + getGeographic();
+      hash = (37 * hash) + ZONEID_FIELD_NUMBER;
+      hash = (53 * hash) + getZoneId();
       hash = (37 * hash) + GUID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getGuid());
-      hash = (37 * hash) + BANNERID_FIELD_NUMBER;
-      hash = (53 * hash) + getBannerid();
+      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+      hash = (53 * hash) + getDomain().hashCode();
+      hash = (37 * hash) + OSCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getOsCode();
+      hash = (37 * hash) + BROWSERCODE_FIELD_NUMBER;
+      hash = (53 * hash) + getBrowserCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -306,9 +553,23 @@ public final class CTR {
       }
       public Builder clear() {
         super.clear();
+        weekday_ = 0;
+
+        hour_ = 0;
+
+        bannerId_ = 0;
+
+        geographic_ = 0;
+
+        zoneId_ = 0;
+
         guid_ = 0L;
 
-        bannerid_ = 0;
+        domain_ = "";
+
+        osCode_ = 0;
+
+        browserCode_ = 0;
 
         return this;
       }
@@ -332,8 +593,15 @@ public final class CTR {
 
       public com.orbekk.example.CTR.Request buildPartial() {
         com.orbekk.example.CTR.Request result = new com.orbekk.example.CTR.Request(this);
+        result.weekday_ = weekday_;
+        result.hour_ = hour_;
+        result.bannerId_ = bannerId_;
+        result.geographic_ = geographic_;
+        result.zoneId_ = zoneId_;
         result.guid_ = guid_;
-        result.bannerid_ = bannerid_;
+        result.domain_ = domain_;
+        result.osCode_ = osCode_;
+        result.browserCode_ = browserCode_;
         onBuilt();
         return result;
       }
@@ -375,11 +643,33 @@ public final class CTR {
 
       public Builder mergeFrom(com.orbekk.example.CTR.Request other) {
         if (other == com.orbekk.example.CTR.Request.getDefaultInstance()) return this;
+        if (other.getWeekday() != 0) {
+          setWeekday(other.getWeekday());
+        }
+        if (other.getHour() != 0) {
+          setHour(other.getHour());
+        }
+        if (other.getBannerId() != 0) {
+          setBannerId(other.getBannerId());
+        }
+        if (other.getGeographic() != 0) {
+          setGeographic(other.getGeographic());
+        }
+        if (other.getZoneId() != 0) {
+          setZoneId(other.getZoneId());
+        }
         if (other.getGuid() != 0L) {
           setGuid(other.getGuid());
         }
-        if (other.getBannerid() != 0) {
-          setBannerid(other.getBannerid());
+        if (!other.getDomain().isEmpty()) {
+          domain_ = other.domain_;
+          onChanged();
+        }
+        if (other.getOsCode() != 0) {
+          setOsCode(other.getOsCode());
+        }
+        if (other.getBrowserCode() != 0) {
+          setBrowserCode(other.getBrowserCode());
         }
         onChanged();
         return this;
@@ -407,15 +697,145 @@ public final class CTR {
         return this;
       }
 
+      private int weekday_ ;
+      /**
+       * <code>optional int32 weekday = 1;</code>
+       */
+      public int getWeekday() {
+        return weekday_;
+      }
+      /**
+       * <code>optional int32 weekday = 1;</code>
+       */
+      public Builder setWeekday(int value) {
+        
+        weekday_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 weekday = 1;</code>
+       */
+      public Builder clearWeekday() {
+        
+        weekday_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int hour_ ;
+      /**
+       * <code>optional int32 hour = 2;</code>
+       */
+      public int getHour() {
+        return hour_;
+      }
+      /**
+       * <code>optional int32 hour = 2;</code>
+       */
+      public Builder setHour(int value) {
+        
+        hour_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 hour = 2;</code>
+       */
+      public Builder clearHour() {
+        
+        hour_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int bannerId_ ;
+      /**
+       * <code>optional int32 bannerId = 3;</code>
+       */
+      public int getBannerId() {
+        return bannerId_;
+      }
+      /**
+       * <code>optional int32 bannerId = 3;</code>
+       */
+      public Builder setBannerId(int value) {
+        
+        bannerId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 bannerId = 3;</code>
+       */
+      public Builder clearBannerId() {
+        
+        bannerId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int geographic_ ;
+      /**
+       * <code>optional int32 geographic = 4;</code>
+       */
+      public int getGeographic() {
+        return geographic_;
+      }
+      /**
+       * <code>optional int32 geographic = 4;</code>
+       */
+      public Builder setGeographic(int value) {
+        
+        geographic_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 geographic = 4;</code>
+       */
+      public Builder clearGeographic() {
+        
+        geographic_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int zoneId_ ;
+      /**
+       * <code>optional int32 zoneId = 5;</code>
+       */
+      public int getZoneId() {
+        return zoneId_;
+      }
+      /**
+       * <code>optional int32 zoneId = 5;</code>
+       */
+      public Builder setZoneId(int value) {
+        
+        zoneId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 zoneId = 5;</code>
+       */
+      public Builder clearZoneId() {
+        
+        zoneId_ = 0;
+        onChanged();
+        return this;
+      }
+
       private long guid_ ;
       /**
-       * <code>optional int64 guid = 1;</code>
+       * <code>optional int64 guid = 6;</code>
        */
       public long getGuid() {
         return guid_;
       }
       /**
-       * <code>optional int64 guid = 1;</code>
+       * <code>optional int64 guid = 6;</code>
        */
       public Builder setGuid(long value) {
         
@@ -424,7 +844,7 @@ public final class CTR {
         return this;
       }
       /**
-       * <code>optional int64 guid = 1;</code>
+       * <code>optional int64 guid = 6;</code>
        */
       public Builder clearGuid() {
         
@@ -433,28 +853,123 @@ public final class CTR {
         return this;
       }
 
-      private int bannerid_ ;
+      private java.lang.Object domain_ = "";
       /**
-       * <code>optional int32 bannerid = 2;</code>
+       * <code>optional string domain = 7;</code>
        */
-      public int getBannerid() {
-        return bannerid_;
+      public java.lang.String getDomain() {
+        java.lang.Object ref = domain_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          domain_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>optional int32 bannerid = 2;</code>
+       * <code>optional string domain = 7;</code>
        */
-      public Builder setBannerid(int value) {
-        
-        bannerid_ = value;
+      public com.google.protobuf.ByteString
+          getDomainBytes() {
+        java.lang.Object ref = domain_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          domain_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string domain = 7;</code>
+       */
+      public Builder setDomain(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        domain_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 bannerid = 2;</code>
+       * <code>optional string domain = 7;</code>
        */
-      public Builder clearBannerid() {
+      public Builder clearDomain() {
         
-        bannerid_ = 0;
+        domain_ = getDefaultInstance().getDomain();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string domain = 7;</code>
+       */
+      public Builder setDomainBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        domain_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int osCode_ ;
+      /**
+       * <code>optional int32 osCode = 8;</code>
+       */
+      public int getOsCode() {
+        return osCode_;
+      }
+      /**
+       * <code>optional int32 osCode = 8;</code>
+       */
+      public Builder setOsCode(int value) {
+        
+        osCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 osCode = 8;</code>
+       */
+      public Builder clearOsCode() {
+        
+        osCode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int browserCode_ ;
+      /**
+       * <code>optional int32 browserCode = 9;</code>
+       */
+      public int getBrowserCode() {
+        return browserCode_;
+      }
+      /**
+       * <code>optional int32 browserCode = 9;</code>
+       */
+      public Builder setBrowserCode(int value) {
+        
+        browserCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 browserCode = 9;</code>
+       */
+      public Builder clearBrowserCode() {
+        
+        browserCode_ = 0;
         onChanged();
         return this;
       }
@@ -512,14 +1027,14 @@ public final class CTR {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional int32 bannerid = 1;</code>
+     * <code>optional int32 bannerId = 1;</code>
      */
-    int getBannerid();
+    int getBannerId();
 
     /**
-     * <code>optional float ctrPred = 2;</code>
+     * <code>optional float ctrPrediction = 2;</code>
      */
-    float getCtrPred();
+    float getCtrPrediction();
   }
   /**
    * Protobuf type {@code com.orbekk.example.Response}
@@ -533,8 +1048,8 @@ public final class CTR {
       super(builder);
     }
     private Response() {
-      bannerid_ = 0;
-      ctrPred_ = 0F;
+      bannerId_ = 0;
+      ctrPrediction_ = 0F;
     }
 
     @java.lang.Override
@@ -564,12 +1079,12 @@ public final class CTR {
             }
             case 8: {
 
-              bannerid_ = input.readInt32();
+              bannerId_ = input.readInt32();
               break;
             }
             case 21: {
 
-              ctrPred_ = input.readFloat();
+              ctrPrediction_ = input.readFloat();
               break;
             }
           }
@@ -596,21 +1111,21 @@ public final class CTR {
     }
 
     public static final int BANNERID_FIELD_NUMBER = 1;
-    private int bannerid_;
+    private int bannerId_;
     /**
-     * <code>optional int32 bannerid = 1;</code>
+     * <code>optional int32 bannerId = 1;</code>
      */
-    public int getBannerid() {
-      return bannerid_;
+    public int getBannerId() {
+      return bannerId_;
     }
 
-    public static final int CTRPRED_FIELD_NUMBER = 2;
-    private float ctrPred_;
+    public static final int CTRPREDICTION_FIELD_NUMBER = 2;
+    private float ctrPrediction_;
     /**
-     * <code>optional float ctrPred = 2;</code>
+     * <code>optional float ctrPrediction = 2;</code>
      */
-    public float getCtrPred() {
-      return ctrPred_;
+    public float getCtrPrediction() {
+      return ctrPrediction_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -625,11 +1140,11 @@ public final class CTR {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (bannerid_ != 0) {
-        output.writeInt32(1, bannerid_);
+      if (bannerId_ != 0) {
+        output.writeInt32(1, bannerId_);
       }
-      if (ctrPred_ != 0F) {
-        output.writeFloat(2, ctrPred_);
+      if (ctrPrediction_ != 0F) {
+        output.writeFloat(2, ctrPrediction_);
       }
     }
 
@@ -638,13 +1153,13 @@ public final class CTR {
       if (size != -1) return size;
 
       size = 0;
-      if (bannerid_ != 0) {
+      if (bannerId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, bannerid_);
+          .computeInt32Size(1, bannerId_);
       }
-      if (ctrPred_ != 0F) {
+      if (ctrPrediction_ != 0F) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, ctrPred_);
+          .computeFloatSize(2, ctrPrediction_);
       }
       memoizedSize = size;
       return size;
@@ -662,12 +1177,12 @@ public final class CTR {
       com.orbekk.example.CTR.Response other = (com.orbekk.example.CTR.Response) obj;
 
       boolean result = true;
-      result = result && (getBannerid()
-          == other.getBannerid());
+      result = result && (getBannerId()
+          == other.getBannerId());
       result = result && (
-          java.lang.Float.floatToIntBits(getCtrPred())
+          java.lang.Float.floatToIntBits(getCtrPrediction())
           == java.lang.Float.floatToIntBits(
-              other.getCtrPred()));
+              other.getCtrPrediction()));
       return result;
     }
 
@@ -679,10 +1194,10 @@ public final class CTR {
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
       hash = (37 * hash) + BANNERID_FIELD_NUMBER;
-      hash = (53 * hash) + getBannerid();
-      hash = (37 * hash) + CTRPRED_FIELD_NUMBER;
+      hash = (53 * hash) + getBannerId();
+      hash = (37 * hash) + CTRPREDICTION_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getCtrPred());
+          getCtrPrediction());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -801,9 +1316,9 @@ public final class CTR {
       }
       public Builder clear() {
         super.clear();
-        bannerid_ = 0;
+        bannerId_ = 0;
 
-        ctrPred_ = 0F;
+        ctrPrediction_ = 0F;
 
         return this;
       }
@@ -827,8 +1342,8 @@ public final class CTR {
 
       public com.orbekk.example.CTR.Response buildPartial() {
         com.orbekk.example.CTR.Response result = new com.orbekk.example.CTR.Response(this);
-        result.bannerid_ = bannerid_;
-        result.ctrPred_ = ctrPred_;
+        result.bannerId_ = bannerId_;
+        result.ctrPrediction_ = ctrPrediction_;
         onBuilt();
         return result;
       }
@@ -870,11 +1385,11 @@ public final class CTR {
 
       public Builder mergeFrom(com.orbekk.example.CTR.Response other) {
         if (other == com.orbekk.example.CTR.Response.getDefaultInstance()) return this;
-        if (other.getBannerid() != 0) {
-          setBannerid(other.getBannerid());
+        if (other.getBannerId() != 0) {
+          setBannerId(other.getBannerId());
         }
-        if (other.getCtrPred() != 0F) {
-          setCtrPred(other.getCtrPred());
+        if (other.getCtrPrediction() != 0F) {
+          setCtrPrediction(other.getCtrPrediction());
         }
         onChanged();
         return this;
@@ -902,54 +1417,54 @@ public final class CTR {
         return this;
       }
 
-      private int bannerid_ ;
+      private int bannerId_ ;
       /**
-       * <code>optional int32 bannerid = 1;</code>
+       * <code>optional int32 bannerId = 1;</code>
        */
-      public int getBannerid() {
-        return bannerid_;
+      public int getBannerId() {
+        return bannerId_;
       }
       /**
-       * <code>optional int32 bannerid = 1;</code>
+       * <code>optional int32 bannerId = 1;</code>
        */
-      public Builder setBannerid(int value) {
+      public Builder setBannerId(int value) {
         
-        bannerid_ = value;
+        bannerId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int32 bannerid = 1;</code>
+       * <code>optional int32 bannerId = 1;</code>
        */
-      public Builder clearBannerid() {
+      public Builder clearBannerId() {
         
-        bannerid_ = 0;
+        bannerId_ = 0;
         onChanged();
         return this;
       }
 
-      private float ctrPred_ ;
+      private float ctrPrediction_ ;
       /**
-       * <code>optional float ctrPred = 2;</code>
+       * <code>optional float ctrPrediction = 2;</code>
        */
-      public float getCtrPred() {
-        return ctrPred_;
+      public float getCtrPrediction() {
+        return ctrPrediction_;
       }
       /**
-       * <code>optional float ctrPred = 2;</code>
+       * <code>optional float ctrPrediction = 2;</code>
        */
-      public Builder setCtrPred(float value) {
+      public Builder setCtrPrediction(float value) {
         
-        ctrPred_ = value;
+        ctrPrediction_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional float ctrPred = 2;</code>
+       * <code>optional float ctrPrediction = 2;</code>
        */
-      public Builder clearCtrPred() {
+      public Builder clearCtrPrediction() {
         
-        ctrPred_ = 0F;
+        ctrPrediction_ = 0F;
         onChanged();
         return this;
       }
@@ -1253,12 +1768,16 @@ public final class CTR {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tCTR.proto\022\022com.orbekk.example\")\n\007Reque" +
-      "st\022\014\n\004guid\030\001 \001(\003\022\020\n\010bannerid\030\002 \001(\005\"-\n\010Re" +
-      "sponse\022\020\n\010bannerid\030\001 \001(\005\022\017\n\007ctrPred\030\002 \001(" +
-      "\0022b\n\024CTRPredictionService\022J\n\rGetPredicti" +
-      "on\022\033.com.orbekk.example.Request\032\034.com.or" +
-      "bekk.example.ResponseB\003\210\001\001b\006proto3"
+      "\n\tCTR.proto\022\022com.orbekk.example\"\241\001\n\007Requ" +
+      "est\022\017\n\007weekday\030\001 \001(\005\022\014\n\004hour\030\002 \001(\005\022\020\n\010ba" +
+      "nnerId\030\003 \001(\005\022\022\n\ngeographic\030\004 \001(\005\022\016\n\006zone" +
+      "Id\030\005 \001(\005\022\014\n\004guid\030\006 \001(\003\022\016\n\006domain\030\007 \001(\t\022\016" +
+      "\n\006osCode\030\010 \001(\005\022\023\n\013browserCode\030\t \001(\005\"3\n\010R" +
+      "esponse\022\020\n\010bannerId\030\001 \001(\005\022\025\n\rctrPredicti" +
+      "on\030\002 \001(\0022b\n\024CTRPredictionService\022J\n\rGetP" +
+      "rediction\022\033.com.orbekk.example.Request\032\034" +
+      ".com.orbekk.example.ResponseB\003\210\001\001b\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1277,13 +1796,13 @@ public final class CTR {
     internal_static_com_orbekk_example_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_orbekk_example_Request_descriptor,
-        new java.lang.String[] { "Guid", "Bannerid", });
+        new java.lang.String[] { "Weekday", "Hour", "BannerId", "Geographic", "ZoneId", "Guid", "Domain", "OsCode", "BrowserCode", });
     internal_static_com_orbekk_example_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_orbekk_example_Response_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_orbekk_example_Response_descriptor,
-        new java.lang.String[] { "Bannerid", "CtrPred", });
+        new java.lang.String[] { "BannerId", "CtrPrediction", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

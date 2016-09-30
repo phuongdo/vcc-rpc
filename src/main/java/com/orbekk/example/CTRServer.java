@@ -47,9 +47,7 @@ public class CTRServer {
 
             long sum = 0;
             for (int i = 1; i < 100000; i++) {
-                for (int j = 1; j < 100000; j++) {
-                    sum = i + j;
-                }
+                sum += i;
             }
 
 

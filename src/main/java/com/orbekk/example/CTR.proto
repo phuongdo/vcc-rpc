@@ -1,25 +1,25 @@
-syntax = "proto3";
+syntax = "proto2";
 package com.orbekk.example;
 
 option java_generic_services = true;
 
 message Request {
 
-    int32 weekday = 1;
-    int32 hour = 2;
-    int32 bannerId = 3;
-    int32 geographic = 4;
-    int32 zoneId = 5;
-    int64 guid = 6;
-    string domain = 7;
-    int32 osCode = 8;
-    int32 browserCode = 9;
+    required int32 weekday = 1;
+    required int32 hour = 2;
+    required int32 bannerId = 3;
+    required int32 geographic = 4;
+    required int32 zoneId = 5;
+    required int64 guid = 6;
+    required string domain = 7;
+    required int32 osCode = 8;
+    required int32 browserCode = 9;
 
 }
 
 message Response {
-    int32 bannerId = 1;
-    float ctrPrediction = 2;
+    required int32 bannerId = 1;
+    required float ctrPrediction = 2;
 }
 
 

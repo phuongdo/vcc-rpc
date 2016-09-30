@@ -25,7 +25,7 @@ public class CTRClient {
         try {
             // Create channel
             RpcConnectionFactory connectionFactory = SocketRpcConnectionFactories
-                    .createRpcConnectionFactory("localhost", 9999);
+                    .createRpcConnectionFactory("192.168.23.52", 9999);
 //            channel = RpcChannel.createOrNull("192.168.23.52", port);
             channel = RpcChannels.newBlockingRpcChannel(connectionFactory);
             // Call service

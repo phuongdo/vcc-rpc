@@ -1,0 +1,29 @@
+syntax = "proto3";
+package com.orbekk.protobuf;
+
+// Next tag: 6
+message Request {
+    string full_service_name = 1;
+    string method_name = 2;
+    bytes request_proto = 3;
+    int64 request_id = 4;
+}
+
+// Next tag: 8
+message Response {
+    bytes response_proto = 1;
+    enum RpcError {
+        UNKNOWN_SERVICE = 0;
+        UNKNOWN_METHOD = 1;
+        CANCELED = 2;
+        INVALID_PROTOBUF = 3;
+    };
+    RpcError error = 2;
+    int64 request_id = 5;
+    
+    // Rpc status
+    bool hasFailed = 4;
+    bool canceled = 6;
+    bool done = 7 ;
+    string error_text = 3;
+}

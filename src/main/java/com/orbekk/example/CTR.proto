@@ -1,0 +1,28 @@
+syntax = "proto3";
+package com.orbekk.example;
+
+option java_generic_services = true;
+
+message Request {
+
+    int32 weekday = 1;
+    int32 hour = 2;
+    int32 bannerId = 3;
+    int32 geographic = 4;
+    int32 zoneId = 5;
+    int64 guid = 6;
+    string domain = 7;
+    int32 osCode = 8;
+    int32 browserCode = 9;
+
+}
+
+message Response {
+    int32 bannerId = 1;
+    float ctrPrediction = 2;
+}
+
+
+service CTRPredictionService {
+    rpc GetPrediction (Request) returns (Response);
+}

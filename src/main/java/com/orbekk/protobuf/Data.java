@@ -6,13 +6,7 @@ package com.orbekk.protobuf;
 public final class Data {
   private Data() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface RequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.orbekk.protobuf.Request)
@@ -65,37 +59,43 @@ public final class Data {
     long getRequestId();
   }
   /**
+   * Protobuf type {@code com.orbekk.protobuf.Request}
+   *
    * <pre>
    * Next tag: 6
    * </pre>
-   *
-   * Protobuf type {@code com.orbekk.protobuf.Request}
    */
-  public  static final class Request extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Request extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:com.orbekk.protobuf.Request)
       RequestOrBuilder {
     // Use Request.newBuilder() to construct.
-    private Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Request(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Request() {
-      fullServiceName_ = "";
-      methodName_ = "";
-      requestProto_ = com.google.protobuf.ByteString.EMPTY;
-      requestId_ = 0L;
+    private Request(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Request defaultInstance;
+    public static Request getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Request getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Request(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -142,7 +142,7 @@ public final class Data {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -153,16 +153,31 @@ public final class Data {
       return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.orbekk.protobuf.Data.Request.class, com.orbekk.protobuf.Data.Request.Builder.class);
     }
 
+    public static com.google.protobuf.Parser<Request> PARSER =
+        new com.google.protobuf.AbstractParser<Request>() {
+      public Request parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Request(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Request> getParserForType() {
+      return PARSER;
+    }
+
     private int bitField0_;
     public static final int FULL_SERVICE_NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object fullServiceName_;
+    private java.lang.Object fullServiceName_;
     /**
      * <code>optional string full_service_name = 1;</code>
      */
@@ -204,7 +219,7 @@ public final class Data {
     }
 
     public static final int METHOD_NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object methodName_;
+    private java.lang.Object methodName_;
     /**
      * <code>optional string method_name = 2;</code>
      */
@@ -275,6 +290,12 @@ public final class Data {
       return requestId_;
     }
 
+    private void initFields() {
+      fullServiceName_ = "";
+      methodName_ = "";
+      requestProto_ = com.google.protobuf.ByteString.EMPTY;
+      requestId_ = 0L;
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -287,11 +308,12 @@ public final class Data {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fullServiceName_);
+        output.writeBytes(1, getFullServiceNameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, methodName_);
+        output.writeBytes(2, getMethodNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, requestProto_);
@@ -299,19 +321,22 @@ public final class Data {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt64(4, requestId_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fullServiceName_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getFullServiceNameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, methodName_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getMethodNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -321,74 +346,16 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, requestId_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.orbekk.protobuf.Data.Request)) {
-        return super.equals(obj);
-      }
-      com.orbekk.protobuf.Data.Request other = (com.orbekk.protobuf.Data.Request) obj;
-
-      boolean result = true;
-      result = result && (hasFullServiceName() == other.hasFullServiceName());
-      if (hasFullServiceName()) {
-        result = result && getFullServiceName()
-            .equals(other.getFullServiceName());
-      }
-      result = result && (hasMethodName() == other.hasMethodName());
-      if (hasMethodName()) {
-        result = result && getMethodName()
-            .equals(other.getMethodName());
-      }
-      result = result && (hasRequestProto() == other.hasRequestProto());
-      if (hasRequestProto()) {
-        result = result && getRequestProto()
-            .equals(other.getRequestProto());
-      }
-      result = result && (hasRequestId() == other.hasRequestId());
-      if (hasRequestId()) {
-        result = result && (getRequestId()
-            == other.getRequestId());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasFullServiceName()) {
-        hash = (37 * hash) + FULL_SERVICE_NAME_FIELD_NUMBER;
-        hash = (53 * hash) + getFullServiceName().hashCode();
-      }
-      if (hasMethodName()) {
-        hash = (37 * hash) + METHOD_NAME_FIELD_NUMBER;
-        hash = (53 * hash) + getMethodName().hashCode();
-      }
-      if (hasRequestProto()) {
-        hash = (37 * hash) + REQUEST_PROTO_FIELD_NUMBER;
-        hash = (53 * hash) + getRequestProto().hashCode();
-      }
-      if (hasRequestId()) {
-        hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getRequestId());
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static com.orbekk.protobuf.Data.Request parseFrom(
@@ -414,69 +381,58 @@ public final class Data {
     }
     public static com.orbekk.protobuf.Data.Request parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.protobuf.Data.Request parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.orbekk.protobuf.Data.Request parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.orbekk.protobuf.Data.Request parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.orbekk.protobuf.Data.Request parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.protobuf.Data.Request parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(com.orbekk.protobuf.Data.Request prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code com.orbekk.protobuf.Request}
+     *
      * <pre>
      * Next tag: 6
      * </pre>
-     *
-     * Protobuf type {@code com.orbekk.protobuf.Request}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.orbekk.protobuf.Request)
         com.orbekk.protobuf.Data.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -484,7 +440,7 @@ public final class Data {
         return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Request_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -497,15 +453,18 @@ public final class Data {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         fullServiceName_ = "";
@@ -517,6 +476,10 @@ public final class Data {
         requestId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -561,32 +524,6 @@ public final class Data {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.orbekk.protobuf.Data.Request) {
           return mergeFrom((com.orbekk.protobuf.Data.Request)other);
@@ -614,8 +551,7 @@ public final class Data {
         if (other.hasRequestId()) {
           setRequestId(other.getRequestId());
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -632,7 +568,7 @@ public final class Data {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.orbekk.protobuf.Data.Request) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -860,53 +796,16 @@ public final class Data {
         onChanged();
         return this;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Request)
     }
 
-    // @@protoc_insertion_point(class_scope:com.orbekk.protobuf.Request)
-    private static final com.orbekk.protobuf.Data.Request DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.orbekk.protobuf.Data.Request();
+      defaultInstance = new Request(true);
+      defaultInstance.initFields();
     }
 
-    public static com.orbekk.protobuf.Data.Request getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Request>
-        PARSER = new com.google.protobuf.AbstractParser<Request>() {
-      public Request parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Request(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Request> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Request> getParserForType() {
-      return PARSER;
-    }
-
-    public com.orbekk.protobuf.Data.Request getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:com.orbekk.protobuf.Request)
   }
 
   public interface ResponseOrBuilder extends
@@ -941,19 +840,19 @@ public final class Data {
     long getRequestId();
 
     /**
+     * <code>optional bool hasFailed = 4;</code>
+     *
      * <pre>
      * Rpc status
      * </pre>
-     *
-     * <code>optional bool hasFailed = 4;</code>
      */
     boolean hasHasFailed();
     /**
+     * <code>optional bool hasFailed = 4;</code>
+     *
      * <pre>
      * Rpc status
      * </pre>
-     *
-     * <code>optional bool hasFailed = 4;</code>
      */
     boolean getHasFailed();
 
@@ -990,40 +889,43 @@ public final class Data {
         getErrorTextBytes();
   }
   /**
+   * Protobuf type {@code com.orbekk.protobuf.Response}
+   *
    * <pre>
    * Next tag: 8
    * </pre>
-   *
-   * Protobuf type {@code com.orbekk.protobuf.Response}
    */
-  public  static final class Response extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Response extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:com.orbekk.protobuf.Response)
       ResponseOrBuilder {
     // Use Response.newBuilder() to construct.
-    private Response(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Response(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Response() {
-      responseProto_ = com.google.protobuf.ByteString.EMPTY;
-      error_ = 0;
-      requestId_ = 0L;
-      hasFailed_ = false;
-      canceled_ = false;
-      done_ = false;
-      errorText_ = "";
+    private Response(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Response defaultInstance;
+    public static Response getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Response getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Response(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1054,7 +956,7 @@ public final class Data {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
                 bitField0_ |= 0x00000002;
-                error_ = rawValue;
+                error_ = value;
               }
               break;
             }
@@ -1090,7 +992,7 @@ public final class Data {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1101,11 +1003,26 @@ public final class Data {
       return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Response_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Response_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.orbekk.protobuf.Data.Response.class, com.orbekk.protobuf.Data.Response.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Response> PARSER =
+        new com.google.protobuf.AbstractParser<Response>() {
+      public Response parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Response(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Response> getParserForType() {
+      return PARSER;
     }
 
     /**
@@ -1116,19 +1033,19 @@ public final class Data {
       /**
        * <code>UNKNOWN_SERVICE = 0;</code>
        */
-      UNKNOWN_SERVICE(0),
+      UNKNOWN_SERVICE(0, 0),
       /**
        * <code>UNKNOWN_METHOD = 1;</code>
        */
-      UNKNOWN_METHOD(1),
+      UNKNOWN_METHOD(1, 1),
       /**
        * <code>CANCELED = 2;</code>
        */
-      CANCELED(2),
+      CANCELED(2, 2),
       /**
        * <code>INVALID_PROTOBUF = 3;</code>
        */
-      INVALID_PROTOBUF(3),
+      INVALID_PROTOBUF(3, 3),
       ;
 
       /**
@@ -1149,19 +1066,9 @@ public final class Data {
       public static final int INVALID_PROTOBUF_VALUE = 3;
 
 
-      public final int getNumber() {
-        return value;
-      }
+      public final int getNumber() { return value; }
 
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
       public static RpcError valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static RpcError forNumber(int value) {
         switch (value) {
           case 0: return UNKNOWN_SERVICE;
           case 1: return UNKNOWN_METHOD;
@@ -1175,17 +1082,17 @@ public final class Data {
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          RpcError> internalValueMap =
+      private static com.google.protobuf.Internal.EnumLiteMap<RpcError>
+          internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<RpcError>() {
               public RpcError findValueByNumber(int number) {
-                return RpcError.forNumber(number);
+                return RpcError.valueOf(number);
               }
             };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
+        return getDescriptor().getValues().get(index);
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptorForType() {
@@ -1207,9 +1114,11 @@ public final class Data {
         return VALUES[desc.getIndex()];
       }
 
+      private final int index;
       private final int value;
 
-      private RpcError(int value) {
+      private RpcError(int index, int value) {
+        this.index = index;
         this.value = value;
       }
 
@@ -1233,7 +1142,7 @@ public final class Data {
     }
 
     public static final int ERROR_FIELD_NUMBER = 2;
-    private int error_;
+    private com.orbekk.protobuf.Data.Response.RpcError error_;
     /**
      * <code>optional .com.orbekk.protobuf.Response.RpcError error = 2;</code>
      */
@@ -1244,8 +1153,7 @@ public final class Data {
      * <code>optional .com.orbekk.protobuf.Response.RpcError error = 2;</code>
      */
     public com.orbekk.protobuf.Data.Response.RpcError getError() {
-      com.orbekk.protobuf.Data.Response.RpcError result = com.orbekk.protobuf.Data.Response.RpcError.valueOf(error_);
-      return result == null ? com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE : result;
+      return error_;
     }
 
     public static final int REQUEST_ID_FIELD_NUMBER = 5;
@@ -1266,21 +1174,21 @@ public final class Data {
     public static final int HASFAILED_FIELD_NUMBER = 4;
     private boolean hasFailed_;
     /**
+     * <code>optional bool hasFailed = 4;</code>
+     *
      * <pre>
      * Rpc status
      * </pre>
-     *
-     * <code>optional bool hasFailed = 4;</code>
      */
     public boolean hasHasFailed() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
+     * <code>optional bool hasFailed = 4;</code>
+     *
      * <pre>
      * Rpc status
      * </pre>
-     *
-     * <code>optional bool hasFailed = 4;</code>
      */
     public boolean getHasFailed() {
       return hasFailed_;
@@ -1317,7 +1225,7 @@ public final class Data {
     }
 
     public static final int ERROR_TEXT_FIELD_NUMBER = 3;
-    private volatile java.lang.Object errorText_;
+    private java.lang.Object errorText_;
     /**
      * <code>optional string error_text = 3;</code>
      */
@@ -1358,6 +1266,15 @@ public final class Data {
       }
     }
 
+    private void initFields() {
+      responseProto_ = com.google.protobuf.ByteString.EMPTY;
+      error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
+      requestId_ = 0L;
+      hasFailed_ = false;
+      canceled_ = false;
+      done_ = false;
+      errorText_ = "";
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1370,14 +1287,15 @@ public final class Data {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(1, responseProto_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, error_);
+        output.writeEnum(2, error_.getNumber());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, errorText_);
+        output.writeBytes(3, getErrorTextBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeBool(4, hasFailed_);
@@ -1391,11 +1309,12 @@ public final class Data {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeBool(7, done_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -1405,10 +1324,11 @@ public final class Data {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, error_);
+          .computeEnumSize(2, error_.getNumber());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, errorText_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getErrorTextBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -1426,103 +1346,16 @@ public final class Data {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, done_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.orbekk.protobuf.Data.Response)) {
-        return super.equals(obj);
-      }
-      com.orbekk.protobuf.Data.Response other = (com.orbekk.protobuf.Data.Response) obj;
-
-      boolean result = true;
-      result = result && (hasResponseProto() == other.hasResponseProto());
-      if (hasResponseProto()) {
-        result = result && getResponseProto()
-            .equals(other.getResponseProto());
-      }
-      result = result && (hasError() == other.hasError());
-      if (hasError()) {
-        result = result && error_ == other.error_;
-      }
-      result = result && (hasRequestId() == other.hasRequestId());
-      if (hasRequestId()) {
-        result = result && (getRequestId()
-            == other.getRequestId());
-      }
-      result = result && (hasHasFailed() == other.hasHasFailed());
-      if (hasHasFailed()) {
-        result = result && (getHasFailed()
-            == other.getHasFailed());
-      }
-      result = result && (hasCanceled() == other.hasCanceled());
-      if (hasCanceled()) {
-        result = result && (getCanceled()
-            == other.getCanceled());
-      }
-      result = result && (hasDone() == other.hasDone());
-      if (hasDone()) {
-        result = result && (getDone()
-            == other.getDone());
-      }
-      result = result && (hasErrorText() == other.hasErrorText());
-      if (hasErrorText()) {
-        result = result && getErrorText()
-            .equals(other.getErrorText());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasResponseProto()) {
-        hash = (37 * hash) + RESPONSE_PROTO_FIELD_NUMBER;
-        hash = (53 * hash) + getResponseProto().hashCode();
-      }
-      if (hasError()) {
-        hash = (37 * hash) + ERROR_FIELD_NUMBER;
-        hash = (53 * hash) + error_;
-      }
-      if (hasRequestId()) {
-        hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getRequestId());
-      }
-      if (hasHasFailed()) {
-        hash = (37 * hash) + HASFAILED_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getHasFailed());
-      }
-      if (hasCanceled()) {
-        hash = (37 * hash) + CANCELED_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getCanceled());
-      }
-      if (hasDone()) {
-        hash = (37 * hash) + DONE_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-            getDone());
-      }
-      if (hasErrorText()) {
-        hash = (37 * hash) + ERROR_TEXT_FIELD_NUMBER;
-        hash = (53 * hash) + getErrorText().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static com.orbekk.protobuf.Data.Response parseFrom(
@@ -1548,69 +1381,58 @@ public final class Data {
     }
     public static com.orbekk.protobuf.Data.Response parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.protobuf.Data.Response parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.orbekk.protobuf.Data.Response parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.orbekk.protobuf.Data.Response parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.orbekk.protobuf.Data.Response parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.protobuf.Data.Response parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(com.orbekk.protobuf.Data.Response prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
+     * Protobuf type {@code com.orbekk.protobuf.Response}
+     *
      * <pre>
      * Next tag: 8
      * </pre>
-     *
-     * Protobuf type {@code com.orbekk.protobuf.Response}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.orbekk.protobuf.Response)
         com.orbekk.protobuf.Data.ResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1618,7 +1440,7 @@ public final class Data {
         return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Response_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.orbekk.protobuf.Data.internal_static_com_orbekk_protobuf_Response_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1631,20 +1453,23 @@ public final class Data {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         responseProto_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000001);
-        error_ = 0;
+        error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
         bitField0_ = (bitField0_ & ~0x00000002);
         requestId_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -1657,6 +1482,10 @@ public final class Data {
         errorText_ = "";
         bitField0_ = (bitField0_ & ~0x00000040);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -1713,32 +1542,6 @@ public final class Data {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.orbekk.protobuf.Data.Response) {
           return mergeFrom((com.orbekk.protobuf.Data.Response)other);
@@ -1773,8 +1576,7 @@ public final class Data {
           errorText_ = other.errorText_;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -1791,7 +1593,7 @@ public final class Data {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.orbekk.protobuf.Data.Response) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1836,7 +1638,7 @@ public final class Data {
         return this;
       }
 
-      private int error_ = 0;
+      private com.orbekk.protobuf.Data.Response.RpcError error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
       /**
        * <code>optional .com.orbekk.protobuf.Response.RpcError error = 2;</code>
        */
@@ -1847,8 +1649,7 @@ public final class Data {
        * <code>optional .com.orbekk.protobuf.Response.RpcError error = 2;</code>
        */
       public com.orbekk.protobuf.Data.Response.RpcError getError() {
-        com.orbekk.protobuf.Data.Response.RpcError result = com.orbekk.protobuf.Data.Response.RpcError.valueOf(error_);
-        return result == null ? com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE : result;
+        return error_;
       }
       /**
        * <code>optional .com.orbekk.protobuf.Response.RpcError error = 2;</code>
@@ -1858,7 +1659,7 @@ public final class Data {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000002;
-        error_ = value.getNumber();
+        error_ = value;
         onChanged();
         return this;
       }
@@ -1867,7 +1668,7 @@ public final class Data {
        */
       public Builder clearError() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        error_ = 0;
+        error_ = com.orbekk.protobuf.Data.Response.RpcError.UNKNOWN_SERVICE;
         onChanged();
         return this;
       }
@@ -1906,31 +1707,31 @@ public final class Data {
 
       private boolean hasFailed_ ;
       /**
+       * <code>optional bool hasFailed = 4;</code>
+       *
        * <pre>
        * Rpc status
        * </pre>
-       *
-       * <code>optional bool hasFailed = 4;</code>
        */
       public boolean hasHasFailed() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
+       * <code>optional bool hasFailed = 4;</code>
+       *
        * <pre>
        * Rpc status
        * </pre>
-       *
-       * <code>optional bool hasFailed = 4;</code>
        */
       public boolean getHasFailed() {
         return hasFailed_;
       }
       /**
+       * <code>optional bool hasFailed = 4;</code>
+       *
        * <pre>
        * Rpc status
        * </pre>
-       *
-       * <code>optional bool hasFailed = 4;</code>
        */
       public Builder setHasFailed(boolean value) {
         bitField0_ |= 0x00000008;
@@ -1939,11 +1740,11 @@ public final class Data {
         return this;
       }
       /**
+       * <code>optional bool hasFailed = 4;</code>
+       *
        * <pre>
        * Rpc status
        * </pre>
-       *
-       * <code>optional bool hasFailed = 4;</code>
        */
       public Builder clearHasFailed() {
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -2091,71 +1892,34 @@ public final class Data {
         onChanged();
         return this;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:com.orbekk.protobuf.Response)
     }
 
-    // @@protoc_insertion_point(class_scope:com.orbekk.protobuf.Response)
-    private static final com.orbekk.protobuf.Data.Response DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.orbekk.protobuf.Data.Response();
+      defaultInstance = new Response(true);
+      defaultInstance.initFields();
     }
 
-    public static com.orbekk.protobuf.Data.Response getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Response>
-        PARSER = new com.google.protobuf.AbstractParser<Response>() {
-      public Response parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Response(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Response> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Response> getParserForType() {
-      return PARSER;
-    }
-
-    public com.orbekk.protobuf.Data.Response getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:com.orbekk.protobuf.Response)
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_orbekk_protobuf_Request_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_orbekk_protobuf_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_orbekk_protobuf_Response_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_orbekk_protobuf_Response_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -2187,13 +1951,13 @@ public final class Data {
     internal_static_com_orbekk_protobuf_Request_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_com_orbekk_protobuf_Request_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_com_orbekk_protobuf_Request_descriptor,
         new java.lang.String[] { "FullServiceName", "MethodName", "RequestProto", "RequestId", });
     internal_static_com_orbekk_protobuf_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_orbekk_protobuf_Response_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_com_orbekk_protobuf_Response_descriptor,
         new java.lang.String[] { "ResponseProto", "Error", "RequestId", "HasFailed", "Canceled", "Done", "ErrorText", });
   }

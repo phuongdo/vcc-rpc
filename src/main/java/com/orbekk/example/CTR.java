@@ -6,13 +6,7 @@ package com.orbekk.example;
 public final class CTR {
   private CTR() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface RequestOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.orbekk.example.Request)
@@ -107,36 +101,37 @@ public final class CTR {
   /**
    * Protobuf type {@code com.orbekk.example.Request}
    */
-  public  static final class Request extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Request extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:com.orbekk.example.Request)
       RequestOrBuilder {
     // Use Request.newBuilder() to construct.
-    private Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Request(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Request() {
-      weekday_ = 0;
-      hour_ = 0;
-      bannerId_ = 0;
-      geographic_ = 0;
-      zoneId_ = 0;
-      guid_ = 0L;
-      domain_ = "";
-      osCode_ = 0;
-      browserCode_ = 0;
+    private Request(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Request defaultInstance;
+    public static Request getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Request getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Request(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -207,7 +202,7 @@ public final class CTR {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -218,11 +213,26 @@ public final class CTR {
       return com.orbekk.example.CTR.internal_static_com_orbekk_example_Request_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.orbekk.example.CTR.internal_static_com_orbekk_example_Request_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.orbekk.example.CTR.Request.class, com.orbekk.example.CTR.Request.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Request> PARSER =
+        new com.google.protobuf.AbstractParser<Request>() {
+      public Request parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Request(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Request> getParserForType() {
+      return PARSER;
     }
 
     private int bitField0_;
@@ -317,7 +327,7 @@ public final class CTR {
     }
 
     public static final int DOMAIN_FIELD_NUMBER = 7;
-    private volatile java.lang.Object domain_;
+    private java.lang.Object domain_;
     /**
      * <code>required string domain = 7;</code>
      */
@@ -388,6 +398,17 @@ public final class CTR {
       return browserCode_;
     }
 
+    private void initFields() {
+      weekday_ = 0;
+      hour_ = 0;
+      bannerId_ = 0;
+      geographic_ = 0;
+      zoneId_ = 0;
+      guid_ = 0L;
+      domain_ = "";
+      osCode_ = 0;
+      browserCode_ = 0;
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -436,6 +457,7 @@ public final class CTR {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeInt32(1, weekday_);
       }
@@ -455,7 +477,7 @@ public final class CTR {
         output.writeInt64(6, guid_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, domain_);
+        output.writeBytes(7, getDomainBytes());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeInt32(8, osCode_);
@@ -463,11 +485,12 @@ public final class CTR {
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeInt32(9, browserCode_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -496,7 +519,8 @@ public final class CTR {
           .computeInt64Size(6, guid_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, domain_);
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getDomainBytes());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
@@ -506,119 +530,16 @@ public final class CTR {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, browserCode_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.orbekk.example.CTR.Request)) {
-        return super.equals(obj);
-      }
-      com.orbekk.example.CTR.Request other = (com.orbekk.example.CTR.Request) obj;
-
-      boolean result = true;
-      result = result && (hasWeekday() == other.hasWeekday());
-      if (hasWeekday()) {
-        result = result && (getWeekday()
-            == other.getWeekday());
-      }
-      result = result && (hasHour() == other.hasHour());
-      if (hasHour()) {
-        result = result && (getHour()
-            == other.getHour());
-      }
-      result = result && (hasBannerId() == other.hasBannerId());
-      if (hasBannerId()) {
-        result = result && (getBannerId()
-            == other.getBannerId());
-      }
-      result = result && (hasGeographic() == other.hasGeographic());
-      if (hasGeographic()) {
-        result = result && (getGeographic()
-            == other.getGeographic());
-      }
-      result = result && (hasZoneId() == other.hasZoneId());
-      if (hasZoneId()) {
-        result = result && (getZoneId()
-            == other.getZoneId());
-      }
-      result = result && (hasGuid() == other.hasGuid());
-      if (hasGuid()) {
-        result = result && (getGuid()
-            == other.getGuid());
-      }
-      result = result && (hasDomain() == other.hasDomain());
-      if (hasDomain()) {
-        result = result && getDomain()
-            .equals(other.getDomain());
-      }
-      result = result && (hasOsCode() == other.hasOsCode());
-      if (hasOsCode()) {
-        result = result && (getOsCode()
-            == other.getOsCode());
-      }
-      result = result && (hasBrowserCode() == other.hasBrowserCode());
-      if (hasBrowserCode()) {
-        result = result && (getBrowserCode()
-            == other.getBrowserCode());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasWeekday()) {
-        hash = (37 * hash) + WEEKDAY_FIELD_NUMBER;
-        hash = (53 * hash) + getWeekday();
-      }
-      if (hasHour()) {
-        hash = (37 * hash) + HOUR_FIELD_NUMBER;
-        hash = (53 * hash) + getHour();
-      }
-      if (hasBannerId()) {
-        hash = (37 * hash) + BANNERID_FIELD_NUMBER;
-        hash = (53 * hash) + getBannerId();
-      }
-      if (hasGeographic()) {
-        hash = (37 * hash) + GEOGRAPHIC_FIELD_NUMBER;
-        hash = (53 * hash) + getGeographic();
-      }
-      if (hasZoneId()) {
-        hash = (37 * hash) + ZONEID_FIELD_NUMBER;
-        hash = (53 * hash) + getZoneId();
-      }
-      if (hasGuid()) {
-        hash = (37 * hash) + GUID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getGuid());
-      }
-      if (hasDomain()) {
-        hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
-        hash = (53 * hash) + getDomain().hashCode();
-      }
-      if (hasOsCode()) {
-        hash = (37 * hash) + OSCODE_FIELD_NUMBER;
-        hash = (53 * hash) + getOsCode();
-      }
-      if (hasBrowserCode()) {
-        hash = (37 * hash) + BROWSERCODE_FIELD_NUMBER;
-        hash = (53 * hash) + getBrowserCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static com.orbekk.example.CTR.Request parseFrom(
@@ -644,57 +565,46 @@ public final class CTR {
     }
     public static com.orbekk.example.CTR.Request parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.example.CTR.Request parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.orbekk.example.CTR.Request parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.orbekk.example.CTR.Request parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.orbekk.example.CTR.Request parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.example.CTR.Request parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(com.orbekk.example.CTR.Request prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -702,7 +612,7 @@ public final class CTR {
      * Protobuf type {@code com.orbekk.example.Request}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.orbekk.example.Request)
         com.orbekk.example.CTR.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -710,7 +620,7 @@ public final class CTR {
         return com.orbekk.example.CTR.internal_static_com_orbekk_example_Request_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.orbekk.example.CTR.internal_static_com_orbekk_example_Request_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -723,15 +633,18 @@ public final class CTR {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         weekday_ = 0;
@@ -753,6 +666,10 @@ public final class CTR {
         browserCode_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -817,32 +734,6 @@ public final class CTR {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.orbekk.example.CTR.Request) {
           return mergeFrom((com.orbekk.example.CTR.Request)other);
@@ -883,37 +774,45 @@ public final class CTR {
         if (other.hasBrowserCode()) {
           setBrowserCode(other.getBrowserCode());
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (!hasWeekday()) {
+          
           return false;
         }
         if (!hasHour()) {
+          
           return false;
         }
         if (!hasBannerId()) {
+          
           return false;
         }
         if (!hasGeographic()) {
+          
           return false;
         }
         if (!hasZoneId()) {
+          
           return false;
         }
         if (!hasGuid()) {
+          
           return false;
         }
         if (!hasDomain()) {
+          
           return false;
         }
         if (!hasOsCode()) {
+          
           return false;
         }
         if (!hasBrowserCode()) {
+          
           return false;
         }
         return true;
@@ -928,7 +827,7 @@ public final class CTR {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.orbekk.example.CTR.Request) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1269,53 +1168,16 @@ public final class CTR {
         onChanged();
         return this;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:com.orbekk.example.Request)
     }
 
-    // @@protoc_insertion_point(class_scope:com.orbekk.example.Request)
-    private static final com.orbekk.example.CTR.Request DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.orbekk.example.CTR.Request();
+      defaultInstance = new Request(true);
+      defaultInstance.initFields();
     }
 
-    public static com.orbekk.example.CTR.Request getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Request>
-        PARSER = new com.google.protobuf.AbstractParser<Request>() {
-      public Request parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Request(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Request> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Request> getParserForType() {
-      return PARSER;
-    }
-
-    public com.orbekk.example.CTR.Request getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:com.orbekk.example.Request)
   }
 
   public interface ResponseOrBuilder extends
@@ -1343,29 +1205,37 @@ public final class CTR {
   /**
    * Protobuf type {@code com.orbekk.example.Response}
    */
-  public  static final class Response extends
-      com.google.protobuf.GeneratedMessageV3 implements
+  public static final class Response extends
+      com.google.protobuf.GeneratedMessage implements
       // @@protoc_insertion_point(message_implements:com.orbekk.example.Response)
       ResponseOrBuilder {
     // Use Response.newBuilder() to construct.
-    private Response(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    private Response(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Response() {
-      bannerId_ = 0;
-      ctrPrediction_ = 0F;
+    private Response(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Response defaultInstance;
+    public static Response getDefaultInstance() {
+      return defaultInstance;
     }
 
+    public Response getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
     @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
+        getUnknownFields() {
       return this.unknownFields;
     }
     private Response(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
+      initFields();
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
@@ -1400,7 +1270,7 @@ public final class CTR {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+            e.getMessage()).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1411,11 +1281,26 @@ public final class CTR {
       return com.orbekk.example.CTR.internal_static_com_orbekk_example_Response_descriptor;
     }
 
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return com.orbekk.example.CTR.internal_static_com_orbekk_example_Response_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.orbekk.example.CTR.Response.class, com.orbekk.example.CTR.Response.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Response> PARSER =
+        new com.google.protobuf.AbstractParser<Response>() {
+      public Response parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Response(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Response> getParserForType() {
+      return PARSER;
     }
 
     private int bitField0_;
@@ -1449,6 +1334,10 @@ public final class CTR {
       return ctrPrediction_;
     }
 
+    private void initFields() {
+      bannerId_ = 0;
+      ctrPrediction_ = 0F;
+    }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -1469,17 +1358,19 @@ public final class CTR {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeInt32(1, bannerId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeFloat(2, ctrPrediction_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
+    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
-      int size = memoizedSize;
+      int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
@@ -1491,58 +1382,16 @@ public final class CTR {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, ctrPrediction_);
       }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
     @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.orbekk.example.CTR.Response)) {
-        return super.equals(obj);
-      }
-      com.orbekk.example.CTR.Response other = (com.orbekk.example.CTR.Response) obj;
-
-      boolean result = true;
-      result = result && (hasBannerId() == other.hasBannerId());
-      if (hasBannerId()) {
-        result = result && (getBannerId()
-            == other.getBannerId());
-      }
-      result = result && (hasCtrPrediction() == other.hasCtrPrediction());
-      if (hasCtrPrediction()) {
-        result = result && (
-            java.lang.Float.floatToIntBits(getCtrPrediction())
-            == java.lang.Float.floatToIntBits(
-                other.getCtrPrediction()));
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (hasBannerId()) {
-        hash = (37 * hash) + BANNERID_FIELD_NUMBER;
-        hash = (53 * hash) + getBannerId();
-      }
-      if (hasCtrPrediction()) {
-        hash = (37 * hash) + CTRPREDICTION_FIELD_NUMBER;
-        hash = (53 * hash) + java.lang.Float.floatToIntBits(
-            getCtrPrediction());
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
     }
 
     public static com.orbekk.example.CTR.Response parseFrom(
@@ -1568,57 +1417,46 @@ public final class CTR {
     }
     public static com.orbekk.example.CTR.Response parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.example.CTR.Response parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
     public static com.orbekk.example.CTR.Response parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+      return PARSER.parseDelimitedFrom(input);
     }
     public static com.orbekk.example.CTR.Response parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
     public static com.orbekk.example.CTR.Response parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+      return PARSER.parseFrom(input);
     }
     public static com.orbekk.example.CTR.Response parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+      return PARSER.parseFrom(input, extensionRegistry);
     }
 
+    public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
     public static Builder newBuilder(com.orbekk.example.CTR.Response prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
+    public Builder toBuilder() { return newBuilder(this); }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1626,7 +1464,7 @@ public final class CTR {
      * Protobuf type {@code com.orbekk.example.Response}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:com.orbekk.example.Response)
         com.orbekk.example.CTR.ResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
@@ -1634,7 +1472,7 @@ public final class CTR {
         return com.orbekk.example.CTR.internal_static_com_orbekk_example_Response_descriptor;
       }
 
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return com.orbekk.example.CTR.internal_static_com_orbekk_example_Response_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -1647,15 +1485,18 @@ public final class CTR {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
         }
       }
+      private static Builder create() {
+        return new Builder();
+      }
+
       public Builder clear() {
         super.clear();
         bannerId_ = 0;
@@ -1663,6 +1504,10 @@ public final class CTR {
         ctrPrediction_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
       }
 
       public com.google.protobuf.Descriptors.Descriptor
@@ -1699,32 +1544,6 @@ public final class CTR {
         return result;
       }
 
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.orbekk.example.CTR.Response) {
           return mergeFrom((com.orbekk.example.CTR.Response)other);
@@ -1742,16 +1561,17 @@ public final class CTR {
         if (other.hasCtrPrediction()) {
           setCtrPrediction(other.getCtrPrediction());
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
         if (!hasBannerId()) {
+          
           return false;
         }
         if (!hasCtrPrediction()) {
+          
           return false;
         }
         return true;
@@ -1766,7 +1586,7 @@ public final class CTR {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
           parsedMessage = (com.orbekk.example.CTR.Response) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
+          throw e;
         } finally {
           if (parsedMessage != null) {
             mergeFrom(parsedMessage);
@@ -1839,53 +1659,16 @@ public final class CTR {
         onChanged();
         return this;
       }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
 
       // @@protoc_insertion_point(builder_scope:com.orbekk.example.Response)
     }
 
-    // @@protoc_insertion_point(class_scope:com.orbekk.example.Response)
-    private static final com.orbekk.example.CTR.Response DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.orbekk.example.CTR.Response();
+      defaultInstance = new Response(true);
+      defaultInstance.initFields();
     }
 
-    public static com.orbekk.example.CTR.Response getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Response>
-        PARSER = new com.google.protobuf.AbstractParser<Response>() {
-      public Response parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Response(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Response> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Response> getParserForType() {
-      return PARSER;
-    }
-
-    public com.orbekk.example.CTR.Response getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
+    // @@protoc_insertion_point(class_scope:com.orbekk.example.Response)
   }
 
   /**
@@ -2122,20 +1905,20 @@ public final class CTR {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_orbekk_example_Request_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_orbekk_example_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_orbekk_example_Response_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_orbekk_example_Response_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
   }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
+  private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
     java.lang.String[] descriptorData = {
@@ -2165,13 +1948,13 @@ public final class CTR {
     internal_static_com_orbekk_example_Request_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_com_orbekk_example_Request_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_com_orbekk_example_Request_descriptor,
         new java.lang.String[] { "Weekday", "Hour", "BannerId", "Geographic", "ZoneId", "Guid", "Domain", "OsCode", "BrowserCode", });
     internal_static_com_orbekk_example_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_orbekk_example_Response_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_com_orbekk_example_Response_descriptor,
         new java.lang.String[] { "BannerId", "CtrPrediction", });
   }

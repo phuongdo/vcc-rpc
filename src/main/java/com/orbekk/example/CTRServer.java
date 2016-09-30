@@ -29,8 +29,7 @@ public class CTRServer {
             }
 
 
-
-            float pred = random.nextInt(10000) / sum;
+            float pred = (float) random.nextInt(10000) / sum;
             int bannerid = request.getBannerId();
             CTR.Response.Builder reply =
                     CTR.Response.newBuilder().

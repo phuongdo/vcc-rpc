@@ -30,8 +30,8 @@ import java.util.logging.Logger;
 import com.google.protobuf.Service;
 
 public class SimpleProtobufServer extends Thread {
-    private static int DEFAULT_NUM_HANDLERS = 20;
-    private static int DEFAULT_CONCURRENT_REQUESTS = 1;
+    private static int DEFAULT_NUM_HANDLERS = 200;
+    private static int DEFAULT_CONCURRENT_REQUESTS = 10;
 
     private final static Logger logger = Logger.getLogger(
             SimpleProtobufServer.class.getName());

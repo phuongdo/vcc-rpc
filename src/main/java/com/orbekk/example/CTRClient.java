@@ -45,9 +45,9 @@ public class CTRClient {
 
     public void printData(RpcController controller, CTR.CTRPredictionService.BlockingInterface service) {
 //        Rpc rpc = new Rpc();  // Represents a single rpc call.
+        long startTime = System.currentTimeMillis();
 
-
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             int weekday = 1;
             int hour = 2;
             int bannerId = 3;
@@ -77,11 +77,14 @@ public class CTRClient {
 //            final CountDownLatch doneSignal = new CountDownLatch(1);
 
             try {
+
                 CTR.Response myResponse = service.getPrediction(controller, request);
                 System.out.println(myResponse.getCtrPrediction());
             } catch (ServiceException e) {
                 e.printStackTrace();
             }
+
+            System.out.println("Time: " + (System.currentTimeMillis() - startTime));
 
 //            service.getPrediction(rpc, request, new RpcCallback<CTR.Response>() {
 //                @Override
@@ -112,8 +115,8 @@ public class CTRClient {
 //        }
 //        new CTRClient().runClient(Integer.valueOf(args[0]));
 
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
         new CTRClient().runClient(9999);
-        System.out.println("Time: " + (System.currentTimeMillis() - startTime));
+//        System.out.println("Time: " + (System.currentTimeMillis() - startTime));
     }
 }
